@@ -17,7 +17,7 @@ public class UserRole extends BaseEntityUUID {
     protected UserRole() {
     }
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     public List<User> getUsers() {
         return users;
     }

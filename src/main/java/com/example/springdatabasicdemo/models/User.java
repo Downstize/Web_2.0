@@ -23,7 +23,7 @@ public class User  extends BaseEntity {
     protected User() {
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", nullable = false)
     public UserRole getRole() {
         return role;
@@ -87,7 +87,7 @@ public class User  extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     public List<Offer> getOffer() {
         return offer;
     }

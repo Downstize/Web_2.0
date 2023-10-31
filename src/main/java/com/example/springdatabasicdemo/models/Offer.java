@@ -25,7 +25,7 @@ public class Offer extends BaseEntity {
     protected Offer() {
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(name = "model_id", nullable = false)
     public Model getModel() {
         return model;
@@ -35,7 +35,7 @@ public class Offer extends BaseEntity {
         this.model = model;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     public User getUser(){return user;}
 

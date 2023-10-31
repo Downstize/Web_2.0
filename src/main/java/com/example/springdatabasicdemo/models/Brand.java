@@ -16,7 +16,7 @@ public class Brand extends BaseEntity {
     }
 
 
-    @OneToMany(mappedBy = "brand")
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     public List<Model> getModels() {
         return models;
     }

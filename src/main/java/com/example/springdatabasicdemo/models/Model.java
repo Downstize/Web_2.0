@@ -22,7 +22,7 @@ public class Model extends BaseEntity {
     }
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(name = "brand_id")
     public Brand getBrand() {
         return brand;
@@ -32,7 +32,7 @@ public class Model extends BaseEntity {
         this.brand = brand;
     }
 
-    @OneToMany(mappedBy = "model")
+    @OneToMany(mappedBy = "model", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     public List<Offer> getOffers() {
         return offers;
     }
