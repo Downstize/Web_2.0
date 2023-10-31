@@ -47,7 +47,7 @@ public class BrandServiceImpl implements BrandService {
             try {
                 Brand b = modelMapper.map(brand, Brand.class);
                 if (b.getId() == null || findBrand(b.getId()).isEmpty()) {
-                    return modelMapper.map(brandRepository.save(b), BrandDto.class);
+                    return modelMapper.map(brandRepository.saveAndFlush(b), BrandDto.class);
                 }
             } catch (Exception e) {
                 System.out.println("Some thing went wrong!");

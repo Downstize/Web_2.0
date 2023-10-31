@@ -2,8 +2,11 @@ package com.example.springdatabasicdemo.services.impl;
 
 import com.example.springdatabasicdemo.dtos.OfferDto;
 import com.example.springdatabasicdemo.models.Offer;
+import com.example.springdatabasicdemo.repositories.ModelRepository;
 import com.example.springdatabasicdemo.repositories.OfferRepository;
 import com.example.springdatabasicdemo.services.OfferService;
+import com.example.springdatabasicdemo.utill.ValidationUtil;
+import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,29 +14,48 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 public class OfferServiceImpl implements OfferService {
 
-    @Autowired
     private ModelMapper modelMapper;
-    @Autowired
     private OfferRepository offerRepository;
 
-    public OfferServiceImpl(OfferRepository offerRepository) {
+    private final ValidationUtil validationUtil;
+
+    @Autowired
+    public OfferServiceImpl(ModelMapper modelMapper, ValidationUtil validationUtil) {
+        this.modelMapper = modelMapper;
+        this.validationUtil = validationUtil;
+    }
+
+    @Autowired
+    public void setOfferRepository(OfferRepository offerRepository) {
         this.offerRepository = offerRepository;
     }
 
     @Override
     public OfferDto register(OfferDto offer) {
-        Offer b = modelMapper.map(offer, Offer.class);
-        if (b.getId() == null || findOffer(b.getId()).isEmpty()) {
-            return modelMapper.map(offerRepository.save(b), OfferDto.class);
-        } else {
-            throw new DataIntegrityViolationException("A offer with this id already exists");
+
+        if (!this.validationUtil.isValid(offer)) {
+            this.validationUtil
+                    .violations(offer)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+
+        } else{
+            try{
+                Offer b = modelMapper.map(offer, Offer.class);
+            if (b.getId() == null || findOffer(b.getId()).isEmpty()) {
+                return modelMapper.map(offerRepository.save(b), OfferDto.class);
+            }
+            } catch (Exception e) {
+            System.out.println("Some thing went wrong!");
         }
+        }
+        return offer;
     }
 
     @Override

@@ -1,10 +1,12 @@
 package com.example.springdatabasicdemo.services.impl;
 
-import com.example.springdatabasicdemo.dtos.BrandDto;
 import com.example.springdatabasicdemo.dtos.ModelDto;
 import com.example.springdatabasicdemo.models.Model;
+import com.example.springdatabasicdemo.repositories.BrandRepository;
 import com.example.springdatabasicdemo.repositories.ModelRepository;
 import com.example.springdatabasicdemo.services.ModelService;
+import com.example.springdatabasicdemo.utill.ValidationUtil;
+import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,29 +14,47 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 public class ModelServiceImpl implements ModelService {
 
-    @Autowired
-    private ModelMapper modelMapper;
-    @Autowired
+    private final ModelMapper modelMapper;
     private ModelRepository modelRepository;
+    private final ValidationUtil validationUtil;
 
-    public ModelServiceImpl(ModelRepository modelRepository) {
+    @Autowired
+    public ModelServiceImpl(ModelMapper modelMapper, ValidationUtil validationUtil) {
+        this.modelMapper = modelMapper;
+        this.validationUtil = validationUtil;
+    }
+
+    @Autowired
+    public void setModelRepository(ModelRepository modelRepository) {
         this.modelRepository = modelRepository;
     }
 
     @Override
     public ModelDto register(ModelDto model) {
-        Model b = modelMapper.map(model, Model.class);
-        if (b.getId() == null || findModel(b.getId()).isEmpty()) {
-            return modelMapper.map(modelRepository.save(b), ModelDto.class);
+
+        if (!this.validationUtil.isValid(model)) {
+            this.validationUtil
+                    .violations(model)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+
         } else {
-            throw new DataIntegrityViolationException("A model with this id already exists");
+            try {
+                Model b = modelMapper.map(model, Model.class);
+                if (b.getId() == null || findModel(b.getId()).isEmpty()) {
+                    return modelMapper.map(modelRepository.saveAndFlush(b), ModelDto.class);
+                }
+            } catch (Exception e) {
+                System.out.println("Some thing went wrong!");
+            }
         }
+        return model;
     }
 
     @Override
