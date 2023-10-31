@@ -5,14 +5,15 @@ import org.hibernate.annotations.GenericGenerator;
 
 @MappedSuperclass
 public abstract class BaseEntityUUID {
+
+    protected String id;
+
+
     @Id
     @GeneratedValue(generator = "uuid-string")
     @GenericGenerator(name = "uuid-string",
             strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id")
-    protected String id;
-
-
     public String getId() {
         return id;
     }

@@ -10,31 +10,21 @@ import java.util.List;
 @Table(name = "user_account")
 public class User  extends BaseEntity {
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
     private UserRole role;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Offer> offer;
-    @Column(name = "user_name", nullable = false ,unique = true)
     private String userName;
-    @Column(name = "password", nullable = false ,unique = true)
     private String password;
-    @Column(name = "first_name", nullable = false)
     private String firstName;
-    @Column(name = "last_name", nullable = false)
     private String lastName;
-    @Column(name = "is_active", nullable = false)
     private boolean isActive;
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "role", nullable = false)
     private RoleEnum roleEnum;
-    @Column(name = "image_url", nullable = false ,unique = true)
     private String imageUrl;
 
     protected User() {
     }
 
-
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
     public UserRole getRole() {
         return role;
     }
@@ -43,7 +33,7 @@ public class User  extends BaseEntity {
         this.role = role;
     }
 
-
+    @Column(name = "user_name", nullable = false ,unique = true)
     public String getUserName() {
         return userName;
     }
@@ -52,7 +42,7 @@ public class User  extends BaseEntity {
         this.userName = userName;
     }
 
-
+    @Column(name = "password", nullable = false ,unique = true)
     public String getPassword() {
         return password;
     }
@@ -61,7 +51,7 @@ public class User  extends BaseEntity {
         this.password = password;
     }
 
-
+    @Column(name = "first_name", nullable = false)
     public String getFirstName() {
         return firstName;
     }
@@ -70,7 +60,7 @@ public class User  extends BaseEntity {
         this.firstName = firstName;
     }
 
-
+    @Column(name = "last_name", nullable = false)
     public String getLastName() {
         return lastName;
     }
@@ -79,7 +69,7 @@ public class User  extends BaseEntity {
         this.lastName = lastName;
     }
 
-
+    @Column(name = "is_active", nullable = false)
     public boolean isActive() {
         return isActive;
     }
@@ -88,7 +78,7 @@ public class User  extends BaseEntity {
         isActive = active;
     }
 
-
+    @Column(name = "image_url", nullable = false ,unique = true)
     public String getImageUrl() {
         return imageUrl;
     }
@@ -97,7 +87,7 @@ public class User  extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     public List<Offer> getOffer() {
         return offer;
     }
@@ -106,7 +96,8 @@ public class User  extends BaseEntity {
         this.offer = offer;
     }
 
-
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "role", nullable = false)
     public RoleEnum getRoleEnum() {
         return roleEnum;
     }

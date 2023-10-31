@@ -11,35 +11,22 @@ import java.math.BigDecimal;
 @Table(name = "offer")
 public class Offer extends BaseEntity {
 
-    @ManyToOne
-    @JoinColumn(name = "model_id", nullable = false)
     private Model model;
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
     private User user;
-    @Column(name = "description", nullable = false ,unique = true)
     private String description;
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "engine", nullable = false)
     private EngineEnum engineEnum;
-    @Column(name = "imagine_url", nullable = false ,unique = true)
     private String imageUrl;
-    @Column(name = "mileage", nullable = false)
     private int mileage;
-    @Column(name = "price", nullable = false)
     private BigDecimal price;
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "transmission", nullable = false)
     private TransmissionEnum transmissionEnum;
-    @Column(name = "year", nullable = false)
     private int year;
-    @Column(name = "seller", nullable = false)
     private String seller;
 
     protected Offer() {
     }
 
-
+    @ManyToOne
+    @JoinColumn(name = "model_id", nullable = false)
     public Model getModel() {
         return model;
     }
@@ -48,12 +35,13 @@ public class Offer extends BaseEntity {
         this.model = model;
     }
 
-
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     public User getUser(){return user;}
 
     public void setUser(User user){ this.user = user;}
 
-
+    @Column(name = "description", nullable = false ,unique = true)
     public String getDescription() {
         return description;
     }
@@ -62,7 +50,8 @@ public class Offer extends BaseEntity {
         this.description = description;
     }
 
-
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "engine", nullable = false)
     public EngineEnum getEngineEnum() {
         return engineEnum;
     }
@@ -71,7 +60,7 @@ public class Offer extends BaseEntity {
         this.engineEnum = engineEnum;
     }
 
-
+    @Column(name = "imagine_url", nullable = false ,unique = true)
     public String getImageUrl() {
         return imageUrl;
     }
@@ -80,7 +69,7 @@ public class Offer extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
-
+    @Column(name = "mileage", nullable = false)
     public int getMileage() {
         return mileage;
     }
@@ -89,7 +78,7 @@ public class Offer extends BaseEntity {
         this.mileage = mileage;
     }
 
-
+    @Column(name = "price", nullable = false)
     public BigDecimal getPrice() {
         return price;
     }
@@ -98,7 +87,8 @@ public class Offer extends BaseEntity {
         this.price = price;
     }
 
-
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "transmission", nullable = false)
     public TransmissionEnum getTransmissionEnum() {
         return transmissionEnum;
     }
@@ -107,7 +97,7 @@ public class Offer extends BaseEntity {
         this.transmissionEnum = transmissionEnum;
     }
 
-
+    @Column(name = "year", nullable = false)
     public int getYear() {
         return year;
     }
@@ -116,7 +106,7 @@ public class Offer extends BaseEntity {
         this.year = year;
     }
 
-
+    @Column(name = "seller", nullable = false)
     public String getSeller() {
         return seller;
     }

@@ -10,27 +10,20 @@ import java.util.List;
 @Table(name = "model")
 public class Model extends BaseEntity {
 
-    @ManyToOne
-    @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
-    @OneToMany(mappedBy = "model")
     private List<Offer> offers;
-
     private String name;
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "category", nullable = false)
     private CategoryEnum categoryEnum;
-    @Column(name = "imageurl", nullable = false ,unique = true)
     private String imageUrl;
-    @Column(name = "startyear", nullable = false)
     private int startYear;
-    @Column(name = "endyear", nullable = false)
     private int endYear;
 
     protected Model() {
     }
 
 
+    @ManyToOne
+    @JoinColumn(name = "brand_id", nullable = false)
     public Brand getBrand() {
         return brand;
     }
@@ -39,7 +32,7 @@ public class Model extends BaseEntity {
         this.brand = brand;
     }
 
-
+    @OneToMany(mappedBy = "model")
     public List<Offer> getOffers() {
         return offers;
     }
@@ -57,7 +50,8 @@ public class Model extends BaseEntity {
         this.name = name;
     }
 
-
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "category", nullable = false)
     public CategoryEnum getCategoryEnum() {
         return categoryEnum;
     }
@@ -66,7 +60,7 @@ public class Model extends BaseEntity {
         this.categoryEnum = categoryEnum;
     }
 
-
+    @Column(name = "imageurl", nullable = false ,unique = true)
     public String getImageUrl() {
         return imageUrl;
     }
@@ -75,7 +69,7 @@ public class Model extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
-
+    @Column(name = "startyear", nullable = false)
     public int getStartYear() {
         return startYear;
     }
@@ -84,7 +78,7 @@ public class Model extends BaseEntity {
         this.startYear = startYear;
     }
 
-
+    @Column(name = "endyear", nullable = false)
     public int getEndYear() {
         return endYear;
     }

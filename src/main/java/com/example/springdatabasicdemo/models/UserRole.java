@@ -11,16 +11,13 @@ import java.util.List;
 @Table(name = "user_role")
 public class UserRole extends BaseEntityUUID {
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     private List<User> users;
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "role", nullable = false)
     private RoleEnum roleEnum;
 
     protected UserRole() {
     }
 
-
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     public List<User> getUsers() {
         return users;
     }
@@ -29,7 +26,8 @@ public class UserRole extends BaseEntityUUID {
         this.users = users;
     }
 
-
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "role", nullable = false)
     public RoleEnum getRoleEnum() {
         return roleEnum;
     }

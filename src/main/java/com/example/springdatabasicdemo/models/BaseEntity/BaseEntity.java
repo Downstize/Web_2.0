@@ -7,23 +7,26 @@ import java.time.LocalDateTime;
 
 @MappedSuperclass
 public abstract class BaseEntity {
+
+    protected String id;
+
+    protected LocalDateTime created;
+
+    protected LocalDateTime modified;
+
     @Id
     @GeneratedValue(generator = "uuid-string")
     @GenericGenerator(name = "uuid-string",
             strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id")
-    protected String id;
-    @Column(name = "created")
-    protected LocalDateTime created;
-    @Column(name = "modified")
-    protected LocalDateTime modified;
-
     public String getId() {
         return id;
     }
     protected void setId(String id) {
         this.id = id;
     }
+
+    @Column(name = "created")
     public LocalDateTime getCreated() {
         return created;
     }
@@ -32,6 +35,7 @@ public abstract class BaseEntity {
         this.created = created;
     }
 
+    @Column(name = "modified")
     public LocalDateTime getModified() {
         return modified;
     }

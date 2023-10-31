@@ -9,7 +9,7 @@ import java.util.List;
 @Table(name = "brand")
 public class Brand extends BaseEntity {
 
-    @OneToMany(mappedBy = "brand")
+
     private List<Model> models;
 
     private String name;
@@ -18,6 +18,7 @@ public class Brand extends BaseEntity {
     }
 
 
+    @OneToMany(mappedBy = "brand")
     public List<Model> getModels() {
         return models;
     }
