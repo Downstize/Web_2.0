@@ -3,6 +3,7 @@ package com.example.springdatabasicdemo.dtos;
 import com.example.springdatabasicdemo.models.Enum.RoleEnum;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -55,6 +56,7 @@ public class UserDto {
 
     @NotNull
     @NotEmpty
+    @Length(min = 2, message = "Name must be minimum two characters!")
     public String getUserName() {
         return userName;
     }
@@ -65,6 +67,7 @@ public class UserDto {
 
     @NotNull
     @NotEmpty
+    @Length(min = 2, message = "Password must be minimum two characters!")
     public String getPassword() {
         return password;
     }
@@ -75,6 +78,7 @@ public class UserDto {
 
     @NotNull
     @NotEmpty
+    @Length(min = 2, message = "First name must be minimum two characters!")
     public String getFirstName() {
         return firstName;
     }
@@ -85,6 +89,7 @@ public class UserDto {
 
     @NotNull
     @NotEmpty
+    @Length(min = 2, message = "Last name must be minimum two characters!")
     public String getLastName() {
         return lastName;
     }
@@ -105,6 +110,7 @@ public class UserDto {
 
     @NotNull
     @NotEmpty
+    @Length(min = 10, message = "Image URL must be minimum two characters!")
     public String getImageUrl() {
         return imageUrl;
     }

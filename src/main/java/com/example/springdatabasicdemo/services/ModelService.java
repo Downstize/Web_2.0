@@ -1,5 +1,6 @@
 package com.example.springdatabasicdemo.services;
 
+import com.example.springdatabasicdemo.dtos.BrandDto;
 import com.example.springdatabasicdemo.dtos.ModelDto;
 import com.example.springdatabasicdemo.models.Model;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public interface ModelService {
     void delete(String id);
 
     Optional<ModelDto> findModel(String id);
+
+    List<ModelDto> findModelsFromStartYear(int startYear);
 
     List<ModelDto> getAll();
 

@@ -3,6 +3,7 @@ package com.example.springdatabasicdemo.dtos;
 import com.example.springdatabasicdemo.models.Enum.CategoryEnum;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
 
@@ -42,6 +43,7 @@ public class ModelDto {
 
     @NotNull
     @NotEmpty
+    @Length(min = 2, message = "Brand name must be minimum two characters!")
     public BrandDto getBrand() {
         return brand;
     }
@@ -52,6 +54,7 @@ public class ModelDto {
 
     @NotNull
     @NotEmpty
+    @Length(min = 2, message = "Name must be minimum two characters!")
     public String getName() {
         return name;
     }
@@ -72,6 +75,7 @@ public class ModelDto {
 
     @NotNull
     @NotEmpty
+    @Length(min = 10, message = "Image URL must be minimum two characters!")
     public String getImageURL() {
         return imageURL;
     }
@@ -82,6 +86,7 @@ public class ModelDto {
 
     @NotNull
     @NotEmpty
+    @Length(min = 2, message = "Year must be minimum two characters!")
     public int getStartYear() {
         return startYear;
     }
@@ -92,6 +97,7 @@ public class ModelDto {
 
     @NotNull
     @NotEmpty
+    @Length(min = 2, message = "Year must be minimum two characters!")
     public int getEndYear() {
         return endYear;
     }

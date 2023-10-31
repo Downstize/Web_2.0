@@ -1,5 +1,6 @@
 package com.example.springdatabasicdemo.services.impl;
 
+import com.example.springdatabasicdemo.dtos.BrandDto;
 import com.example.springdatabasicdemo.dtos.ModelDto;
 import com.example.springdatabasicdemo.models.Model;
 import com.example.springdatabasicdemo.repositories.ModelRepository;
@@ -63,4 +64,12 @@ public class ModelServiceImpl implements ModelService {
             throw new DataIntegrityViolationException("Exception of update!");
         }
     }
+
+    @Override
+    public List<ModelDto> findModelsFromStartYear(int startYear) {
+        return modelRepository.findModelsFromStartYear(startYear).stream()
+                .map(model -> modelMapper.map(model, ModelDto.class))
+                .collect(Collectors.toList());
+    }
+
 }

@@ -9,9 +9,7 @@ import java.util.List;
 @Table(name = "brand")
 public class Brand extends BaseEntity {
 
-
     private List<Model> models;
-
     private String name;
 
     protected Brand() {

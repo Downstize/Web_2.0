@@ -4,8 +4,10 @@ import com.example.springdatabasicdemo.models.Enum.EngineEnum;
 import com.example.springdatabasicdemo.models.Enum.TransmissionEnum;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -56,6 +58,7 @@ public class OfferDto {
 
     @NotNull
     @NotEmpty
+    @Length(min = 2, message = "Model must be minimum two characters!")
     public ModelDto getModel() {
         return model;
     }
@@ -76,6 +79,7 @@ public class OfferDto {
 
     @NotNull
     @NotEmpty
+    @Length(min = 7, message = "Year must be minimum seven characters!")
     public String getDescription() {
         return description;
     }
@@ -96,6 +100,7 @@ public class OfferDto {
 
     @NotNull
     @NotEmpty
+    @Length(min = 10, message = "Image URL must be minimum two characters!")
     public String getImageUrl() {
         return imageUrl;
     }
@@ -116,6 +121,7 @@ public class OfferDto {
 
     @NotNull
     @NotEmpty
+    @DecimalMin(value = "100")
     public BigDecimal getPrice() {
         return price;
     }

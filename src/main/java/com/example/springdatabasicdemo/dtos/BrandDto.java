@@ -2,6 +2,7 @@ package com.example.springdatabasicdemo.dtos;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -31,6 +32,7 @@ public class BrandDto {
 
     @NotNull
     @NotEmpty
+    @Length(min = 2, message = "Name must be minimum two characters!")
     public String getName() {
         return name;
     }
