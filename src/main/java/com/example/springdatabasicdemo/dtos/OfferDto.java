@@ -56,9 +56,6 @@ public class OfferDto {
         this.id = id;
     }
 
-    @NotNull
-    @NotEmpty
-    @Length(min = 2, message = "Model must be minimum two characters!")
     public ModelDto getModel() {
         return model;
     }
@@ -67,8 +64,6 @@ public class OfferDto {
         this.model = model;
     }
 
-    @NotNull
-    @NotEmpty
     public UserDto getUsers() {
         return user;
     }
@@ -88,8 +83,6 @@ public class OfferDto {
         this.description = description;
     }
 
-    @NotNull
-    @NotEmpty
     public EngineEnum getEngineEnum() {
         return engineEnum;
     }
@@ -109,8 +102,6 @@ public class OfferDto {
         this.imageUrl = imageUrl;
     }
 
-    @NotNull
-    @NotEmpty
     public int getMileage() {
         return mileage;
     }
@@ -119,8 +110,6 @@ public class OfferDto {
         this.mileage = mileage;
     }
 
-    @NotNull
-    @NotEmpty
     @DecimalMin(value = "100")
     public BigDecimal getPrice() {
         return price;
@@ -130,8 +119,6 @@ public class OfferDto {
         this.price = price;
     }
 
-    @NotNull
-    @NotEmpty
     public TransmissionEnum getTransmissionEnum() {
         return transmissionEnum;
     }
@@ -140,8 +127,6 @@ public class OfferDto {
         this.transmissionEnum = transmissionEnum;
     }
 
-    @NotNull
-    @NotEmpty
     public int getYear() {
         return year;
     }
@@ -150,8 +135,6 @@ public class OfferDto {
         this.year = year;
     }
 
-    @NotNull
-    @NotEmpty
     public LocalDateTime getCreated() {
         return created;
     }
@@ -160,8 +143,6 @@ public class OfferDto {
         this.created = created;
     }
 
-    @NotNull
-    @NotEmpty
     public LocalDateTime getModified() {
         return modified;
     }

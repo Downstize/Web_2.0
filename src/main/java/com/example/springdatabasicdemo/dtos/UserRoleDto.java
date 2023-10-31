@@ -25,8 +25,6 @@ public class UserRoleDto {
         this.id = id;
     }
 
-    @NotNull
-    @NotEmpty
     public RoleEnum getRoleEnum() {
         return roleEnum;
     }

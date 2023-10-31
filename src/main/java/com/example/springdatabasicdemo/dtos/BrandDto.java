@@ -41,8 +41,6 @@ public class BrandDto {
         this.name = name;
     }
 
-    @NotNull
-    @NotEmpty
     public LocalDateTime getCreated() {
         return created;
     }
@@ -51,8 +49,6 @@ public class BrandDto {
         this.created = created;
     }
 
-    @NotNull
-    @NotEmpty
     public LocalDateTime getModified() {
         return modified;
     }

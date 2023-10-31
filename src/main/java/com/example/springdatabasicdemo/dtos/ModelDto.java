@@ -41,9 +41,6 @@ public class ModelDto {
         this.id = id;
     }
 
-    @NotNull
-    @NotEmpty
-    @Length(min = 2, message = "Brand name must be minimum two characters!")
     public BrandDto getBrand() {
         return brand;
     }
@@ -63,8 +60,6 @@ public class ModelDto {
         this.name = name;
     }
 
-    @NotNull
-    @NotEmpty
     public CategoryEnum getCategoryEnum() {
         return categoryEnum;
     }
@@ -84,9 +79,6 @@ public class ModelDto {
         this.imageURL = imageURL;
     }
 
-    @NotNull
-    @NotEmpty
-    @Length(min = 2, message = "Year must be minimum two characters!")
     public int getStartYear() {
         return startYear;
     }
@@ -95,9 +87,6 @@ public class ModelDto {
         this.startYear = startYear;
     }
 
-    @NotNull
-    @NotEmpty
-    @Length(min = 2, message = "Year must be minimum two characters!")
     public int getEndYear() {
         return endYear;
     }
@@ -106,8 +95,6 @@ public class ModelDto {
         this.endYear = endYear;
     }
 
-    @NotNull
-    @NotEmpty
     public LocalDateTime getCreated() {
         return created;
     }
@@ -116,8 +103,6 @@ public class ModelDto {
         this.created = created;
     }
 
-    @NotNull
-    @NotEmpty
     public LocalDateTime getModified() {
         return modified;
     }

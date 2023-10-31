@@ -23,7 +23,7 @@ public class Model extends BaseEntity {
 
 
     @ManyToOne
-    @JoinColumn(name = "brand_id", nullable = false)
+    @JoinColumn(name = "brand_id")
     public Brand getBrand() {
         return brand;
     }

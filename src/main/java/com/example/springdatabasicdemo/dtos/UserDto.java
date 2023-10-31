@@ -44,8 +44,6 @@ public class UserDto {
         this.id = id;
     }
 
-    @NotNull
-    @NotEmpty
     public UserRoleDto getRole() {
         return role;
     }
@@ -98,8 +96,6 @@ public class UserDto {
         this.lastName = lastName;
     }
 
-    @NotNull
-    @NotEmpty
     public boolean isActive() {
         return isActive;
     }
@@ -119,8 +115,6 @@ public class UserDto {
         this.imageUrl = imageUrl;
     }
 
-    @NotNull
-    @NotEmpty
     public LocalDateTime getCreated() {
         return created;
     }
@@ -129,8 +123,6 @@ public class UserDto {
         this.created = created;
     }
 
-    @NotNull
-    @NotEmpty
     public LocalDateTime getModified() {
         return modified;
     }
