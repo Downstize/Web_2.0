@@ -2,7 +2,6 @@ package com.example.springdatabasicdemo.services.impl;
 
 import com.example.springdatabasicdemo.dtos.OfferDto;
 import com.example.springdatabasicdemo.models.Offer;
-import com.example.springdatabasicdemo.repositories.ModelRepository;
 import com.example.springdatabasicdemo.repositories.OfferRepository;
 import com.example.springdatabasicdemo.services.OfferService;
 import com.example.springdatabasicdemo.utill.ValidationUtil;
@@ -21,15 +20,16 @@ public class OfferServiceImpl implements OfferService {
 
     private ModelMapper modelMapper;
     private OfferRepository offerRepository;
-
-    private final ValidationUtil validationUtil;
+    private  ValidationUtil validationUtil;
 
     @Autowired
-    public OfferServiceImpl(ModelMapper modelMapper, ValidationUtil validationUtil) {
-        this.modelMapper = modelMapper;
+    public void setValidationUtil(ValidationUtil validationUtil) {
         this.validationUtil = validationUtil;
     }
-
+    @Autowired
+    public void setModelMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
     @Autowired
     public void setOfferRepository(OfferRepository offerRepository) {
         this.offerRepository = offerRepository;
@@ -52,7 +52,7 @@ public class OfferServiceImpl implements OfferService {
                 return modelMapper.map(offerRepository.save(b), OfferDto.class);
             }
             } catch (Exception e) {
-            System.out.println("Some thing went wrong!");
+                System.out.println("Smth goes wrong!");
         }
         }
         return offer;

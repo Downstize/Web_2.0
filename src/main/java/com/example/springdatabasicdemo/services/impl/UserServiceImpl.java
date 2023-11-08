@@ -3,7 +3,6 @@ package com.example.springdatabasicdemo.services.impl;
 import com.example.springdatabasicdemo.dtos.UserDto;
 import com.example.springdatabasicdemo.models.User;
 import com.example.springdatabasicdemo.repositories.UserRepository;
-import com.example.springdatabasicdemo.repositories.UserRoleRepository;
 import com.example.springdatabasicdemo.services.UserService;
 import com.example.springdatabasicdemo.utill.ValidationUtil;
 import jakarta.validation.ConstraintViolation;
@@ -21,14 +20,16 @@ public class UserServiceImpl implements UserService {
 
     private ModelMapper modelMapper;
     private UserRepository userRepository;
-    private final ValidationUtil validationUtil;
+    private  ValidationUtil validationUtil;
 
     @Autowired
-    public UserServiceImpl(ModelMapper modelMapper, ValidationUtil validationUtil) {
-        this.modelMapper = modelMapper;
+    public void setValidationUtil(ValidationUtil validationUtil) {
         this.validationUtil = validationUtil;
     }
-
+    @Autowired
+    public void setModelMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -51,7 +52,7 @@ public class UserServiceImpl implements UserService {
                 return modelMapper.map(userRepository.save(b), UserDto.class);
             }
             } catch (Exception e) {
-            System.out.println("Some thing went wrong!");
+                System.out.println("Smth goes wrong!");
         }
         }
         return users;

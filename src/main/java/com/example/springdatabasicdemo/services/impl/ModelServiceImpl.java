@@ -2,7 +2,6 @@ package com.example.springdatabasicdemo.services.impl;
 
 import com.example.springdatabasicdemo.dtos.ModelDto;
 import com.example.springdatabasicdemo.models.Model;
-import com.example.springdatabasicdemo.repositories.BrandRepository;
 import com.example.springdatabasicdemo.repositories.ModelRepository;
 import com.example.springdatabasicdemo.services.ModelService;
 import com.example.springdatabasicdemo.utill.ValidationUtil;
@@ -19,14 +18,17 @@ import java.util.stream.Collectors;
 @Service
 public class ModelServiceImpl implements ModelService {
 
-    private final ModelMapper modelMapper;
+    private  ModelMapper modelMapper;
     private ModelRepository modelRepository;
-    private final ValidationUtil validationUtil;
+    private  ValidationUtil validationUtil;
 
     @Autowired
-    public ModelServiceImpl(ModelMapper modelMapper, ValidationUtil validationUtil) {
-        this.modelMapper = modelMapper;
+    public void setValidationUtil(ValidationUtil validationUtil) {
         this.validationUtil = validationUtil;
+    }
+    @Autowired
+    public void setModelMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
     }
 
     @Autowired
@@ -51,7 +53,7 @@ public class ModelServiceImpl implements ModelService {
                     return modelMapper.map(modelRepository.saveAndFlush(b), ModelDto.class);
                 }
             } catch (Exception e) {
-                System.out.println("Some thing went wrong!");
+                System.out.println("Smth goes wrong!");
             }
         }
         return model;

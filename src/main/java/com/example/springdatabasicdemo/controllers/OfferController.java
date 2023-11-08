@@ -27,11 +27,7 @@ public class OfferController {
     public ResponseEntity<OfferDto> findOfferById(@PathVariable String id) {
         Optional<OfferDto> offerDto = offerService.findOffer(id);
 
-        if (offerDto.isPresent()) {
-            return ResponseEntity.ok(offerDto.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return offerDto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/offer/create")

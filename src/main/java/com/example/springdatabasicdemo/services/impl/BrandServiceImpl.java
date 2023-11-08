@@ -18,14 +18,17 @@ import java.util.stream.Collectors;
 @Service
 public class BrandServiceImpl implements BrandService {
 
-    private final ModelMapper modelMapper;
+    private  ModelMapper modelMapper;
     private BrandRepository brandRepository;
-    private final ValidationUtil validationUtil;
+    private  ValidationUtil validationUtil;
 
     @Autowired
-    public BrandServiceImpl(ModelMapper modelMapper, ValidationUtil validationUtil) {
-        this.modelMapper = modelMapper;
+    public void setValidationUtil(ValidationUtil validationUtil) {
         this.validationUtil = validationUtil;
+    }
+    @Autowired
+    public void setModelMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
     }
 
     @Autowired
@@ -50,7 +53,7 @@ public class BrandServiceImpl implements BrandService {
                     return modelMapper.map(brandRepository.saveAndFlush(b), BrandDto.class);
                 }
             } catch (Exception e) {
-                System.out.println("Some thing went wrong!");
+                System.out.println("Smth goes wrong!");
             }
         }
         return brand;

@@ -29,11 +29,7 @@ public class UserRoleController {
     public ResponseEntity<UserRoleDto> findUserRoleById(@PathVariable String id) {
         Optional<UserRoleDto> userRoleDto = userRoleService.findUser(id);
 
-        if (userRoleDto.isPresent()) {
-            return ResponseEntity.ok(userRoleDto.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return userRoleDto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/userRole/create")

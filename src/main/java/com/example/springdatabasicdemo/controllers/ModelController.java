@@ -30,11 +30,7 @@ public class ModelController {
     public ResponseEntity<ModelDto> findModelById(@PathVariable String id) {
         Optional<ModelDto> modelDto = modelService.findModel(id);
 
-        if (modelDto.isPresent()) {
-            return ResponseEntity.ok(modelDto.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return modelDto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/model/create")

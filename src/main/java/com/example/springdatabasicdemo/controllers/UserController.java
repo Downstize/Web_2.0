@@ -27,11 +27,7 @@ public class UserController {
     public ResponseEntity<UserDto> findUserById(@PathVariable String id) {
         Optional<UserDto> userDto = userService.findUser(id);
 
-        if (userDto.isPresent()) {
-            return ResponseEntity.ok(userDto.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return userDto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/user/create")

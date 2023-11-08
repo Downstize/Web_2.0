@@ -2,7 +2,6 @@ package com.example.springdatabasicdemo.services.impl;
 
 import com.example.springdatabasicdemo.dtos.UserRoleDto;
 import com.example.springdatabasicdemo.models.UserRole;
-import com.example.springdatabasicdemo.repositories.OfferRepository;
 import com.example.springdatabasicdemo.repositories.UserRoleRepository;
 import com.example.springdatabasicdemo.services.UserRoleService;
 import com.example.springdatabasicdemo.utill.ValidationUtil;
@@ -19,19 +18,18 @@ import java.util.stream.Collectors;
 @Service
 public class UserRoleServiceImpl implements UserRoleService {
 
-
     private ModelMapper modelMapper;
-
     private UserRoleRepository userRoleRepository;
-
-    private final ValidationUtil validationUtil;
+    private  ValidationUtil validationUtil;
 
     @Autowired
-    public UserRoleServiceImpl(ModelMapper modelMapper, ValidationUtil validationUtil) {
-        this.modelMapper = modelMapper;
+    public void setValidationUtil(ValidationUtil validationUtil) {
         this.validationUtil = validationUtil;
     }
-
+    @Autowired
+    public void setModelMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
     @Autowired
     public void setUserRoleRepository(UserRoleRepository userRoleRepository) {
         this.userRoleRepository = userRoleRepository;
@@ -54,7 +52,7 @@ public class UserRoleServiceImpl implements UserRoleService {
                 return modelMapper.map(userRoleRepository.save(b), UserRoleDto.class);
             }
             } catch (Exception e) {
-            System.out.println("Some thing went wrong!");
+                System.out.println("Smth goes wrong!");
         }
         }
         return role;
