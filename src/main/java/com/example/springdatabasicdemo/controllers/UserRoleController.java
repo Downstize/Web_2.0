@@ -2,7 +2,6 @@ package com.example.springdatabasicdemo.controllers;
 
 import com.example.springdatabasicdemo.dtos.UserRoleDto;
 import com.example.springdatabasicdemo.services.UserRoleService;
-import com.example.springdatabasicdemo.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
